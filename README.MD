@@ -109,6 +109,69 @@ This API processes hotel booking data and provides various analytics reports.
     curl -X POST http://localhost:8000/ask -H "Content-Type: application/json" -d "{\"query\": \"What is the cancellation rate?\"}"
     ```
 
+## 🏷️Report 
+
+### 📝 Overview
+
+This project provides a comprehensive platform for analyzing and interacting with hotel booking data. It features data preprocessing, exploratory data analysis, an interactive chatbot, and API endpoints for programmatic data access and analytics.
+
+### 🚀 Features & Implementation
+
+### 1. Data Preprocessing & Analysis (`Data_preprocessing_and_analysis.ipynb`)
+
+#### Implementation Details
+- **Missing Value Handling**: Implemented conditional imputation for missing values based on category and context
+- **Duplicate Detection**: Used composite key approach combining reservation date, guest details, and room type
+- **Data Normalization**: Standardized country codes and currency values for consistency
+- **Conflicting data**: Hotel booking record were present for children and adult value was 0.
+- **Feature Engineering**: Created derived features such as 'Revenue trends over time','Cancellation rate as percentage of total bookings','booking_lead_time' and 'total_guests'
+
+#### sample output
+![alt text](images/image.png)
+![alt text](images/image-1.png)
 
 
+### 2. LLM-Powered Interactive Query Interface (`App.py`)
+
+#### Implementation Details
+- **RAG Architecture**: Implemented hybrid retrieval combining dense and sparse vectors
+- **Vector Database**: Used ChromaDB for efficient similarity search
+
+#### sample ouput
+![alt text](images/Screenshot%20(715).png)
+
+#### Challenges & Solutions
+- **Challenge**: Hallucination in LLM responses not backed by data.Converting a CSV into a long text string often loses its inherent structure and context. This lead to ambiguity when retrieving relevant information, causing the LLM to fill gaps with invented details.
+- **Challenge**: Poor retrieval for numerical queries
+
+  - **Solution**: We can build an AI agent that directly retrieves or computes data from a PostgreSQL database using a query language. This agent then feeds the structured, precise data to an LLM, which refines and augments the answer in the QA system—ensuring factual accuracy and reducing hallucinations.
+ 
+- **Challenge**: Slow response times with large datasets for embedding 
+  - **Solution**: Implementing tiered caching system for frequent queries and pre-computed embeddings
+
+### 3. Query API Service (`Booking_query_api.py`)
+
+#### Implementation Details
+- **API Design**: RESTful architecture with JSON request/response format
+- **Query Processing**: Developed natural language parsing for extracting query intent
+- **Average response time:**:1.1 sec
+
+#### Challenges & Solutions
+- **Challenge**: Server response time delays due to embedding generation and hardware limitations
+  - **Solution**: Implemented batch embedding processing and optimized model quantization to reduce memory footprint while maintaining performance
+- **Challenge**: Hallucination in LLM responses not backed by data
+  - **Solution**: Implemented fact verification system that cross-references generated responses with retrieved data points and filters out unsupported statements
+
+#### sample output:
+![alt text](images/qa_query.png)  
+
+### 4. Analytics API Service (`Booking_analytics_api.py`)
+
+#### Implementation Details
+- **Metrics Pipeline**: Created pre-computed analytics updated on schedule
+- **Endpoint Structure**: Designed hierarchical endpoint structure for intuitive access
+- **Average response time:**
+
+#### sample output:
+![alt text](images/analytic.png)
 
