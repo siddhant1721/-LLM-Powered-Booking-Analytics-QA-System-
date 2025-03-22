@@ -65,17 +65,11 @@ def get_or_create_collection(file_name):
     client = get_chroma_client()
     collection_name = f"csv_{file_name.replace('.', '_')}"
     
-    # Check if collection exists
-    try:
-        collections = client.list_collections()
-        collection_names = [col.name for col in collections]
-        
-        if collection_name in collection_names:
-            return client.get_collection(collection_name), True
-        else:
-            return client.create_collection(collection_name), False
-    except Exception as e:
-        st.error(f"Error accessing ChromaDB: {e}")
+    # list_collections now returns a list of collection names (strings)
+    collections = client.list_collections()
+    if collection_name in collections:
+        return client.get_collection(collection_name), True
+    else:
         return client.create_collection(collection_name), False
 
 def process_csv_for_rag(file_path, file_name):
@@ -169,7 +163,7 @@ with st.sidebar:
 col1, col2 = st.columns([6, 1])
 
 with col1:
-    st.header("RAG over CSV using Groq Model")
+    st.header("Hotel Bookings QA App")
 with col2:
     st.button("Clear ↺", on_click=reset_chat)
 
