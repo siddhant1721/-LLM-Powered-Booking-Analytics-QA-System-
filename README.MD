@@ -178,7 +178,7 @@ This project provides a comprehensive platform for analyzing and interacting wit
 #### Implementation Details
 - **Metrics Pipeline**: Created pre-computed analytics updated on schedule
 - **Endpoint Structure**: Designed hierarchical endpoint structure for intuitive access
-- **Average response time:**
+- **Average response time:**:70 ms
 
 #### sample output:
 ![alt text](images/analytic.png)
