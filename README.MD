@@ -68,12 +68,12 @@ This API processes hotel booking data and provides various analytics reports.
 
 #### Getting Started
 
-1. **Start the Server:**  
+#### 1. **Start the Server:**  
    Run the Python file to start the FastAPI server. For example:
    ```sh
    python Booking_analytics_api.py
    ```
-2. You should see output indicating the server is running on `http://0.0.0.0:8000`.
+#### 2. You should see output indicating the server is running on `http://0.0.0.0:8000`.
 
    #### Test the API Endpoints Using cURL
 
@@ -104,14 +104,14 @@ This API processes hotel booking data and provides various analytics reports.
 
 ### 🤔Booking_query_api
 
-1. Start the Server
+### 1. Start the Server
 
       Run this command in your terminal (make sure to change to the correct directory):
 
       ```sh
       uvicorn Booking_query_api:app --host 0.0.0.0 --port 8000
       ```
-2. Query the api
+### 2. Query the api
 
     ```sh
     curl -X POST http://localhost:8000/ask -H "Content-Type: application/json" -d "{\"query\": \"What is the cancellation rate?\"}"
