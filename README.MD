@@ -27,13 +27,21 @@ Ensure you have the following installed:
 - Python 3.10+
 - [Streamlit](https://docs.streamlit.io/)
 - [FastAPI](https://fastapi.tiangolo.com/) and a compatible ASGI server (e.g., [uvicorn](https://www.uvicorn.org/))
-- Jupyter Notebook (if you plan to run the assignment notebook)
+- Jupyter Notebook (if you plan to run the 'Data_preprocessing_and_analysis' notebook)
+-  Configuration
 
-You can install the Python dependencies using pip:
+    Ensure you have set your Groq API key in the environment variable:
 
-```bash
-pip install -r requirements.txt 
-```
+    ```sh
+    export GROQ_API_KEY=your_api_key_here
+    ```
+
+
+- You can install the Python dependencies using pip:
+
+  ```sh
+  pip install -r requirements.txt 
+  ```
 
 ## 🤖Setup
 
@@ -42,7 +50,7 @@ pip install -r requirements.txt
 ```bash
 git clone https://github.com/siddhant1721/-LLM-Powered-Booking-Analytics-QA-System-
 ```
-## ▶️▶️Running the Applications
+## ▶️Running the Applications
 
 ### 📅Data_preprocessing_and_analysis
 run the jupyter notebook
